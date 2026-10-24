@@ -3,82 +3,86 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#061522">
-<meta name="description" content="The Wedge, Newport Beach surf cam style dashboard with local time and surf conditions.">
-<title>The Wedge Cam | Newport Beach</title>
+<meta name="theme-color" content="#08131d">
+<meta name="description" content="The Wedge, Newport Beach live surf and weather information banner.">
+<title>The Wedge Cam · Newport Beach</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:transparent;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:0;padding:0}
-.page{width:100%;max-width:none}.banner{position:relative;isolation:isolate;overflow:hidden;border:1px solid #324657;border-radius:14px;background:linear-gradient(90deg,rgba(3,15,26,.97),rgba(3,20,32,.78) 45%,rgba(3,14,23,.91)),radial-gradient(ellipse at 70% 0%,#ff9b4c 0%,#813d43 22%,transparent 50%),linear-gradient(165deg,#0a5268,#05111e 65%);box-shadow:0 18px 60px #0008}
-.banner:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 38% 100%,#087b9c88,transparent 45%),linear-gradient(0deg,#020810aa,transparent 70%)}
-.banner:after{content:"";position:absolute;z-index:-1;left:28%;right:0;top:0;height:5px;background:linear-gradient(90deg,#52a9ff,#f34362,#ffb52e)}
-.grid{display:grid;grid-template-columns:110px 180px minmax(230px,1.8fr) repeat(6,minmax(100px,.8fr)) minmax(105px,.8fr);align-items:stretch}
-.cell{padding:19px 14px;min-width:0;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #ffffff30;text-align:center}
-.cell:last-child{border-right:0}.label{font-size:11px;font-weight:700;letter-spacing:.12em;color:#c4d0d9;text-transform:uppercase;white-space:nowrap}.value{font-size:clamp(19px,2vw,30px);font-weight:800;line-height:1.12;margin:8px 0 5px;white-space:nowrap}.sub{font-size:11px;font-weight:700;letter-spacing:.04em;color:#d1dbe2;white-space:nowrap}.logo{align-items:center}.logo-mark{width:58px;height:58px;border:2px solid #f9f6ee;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ff8b38 0 35%,#087fa7 36% 65%,#071a2b 66%);font-size:29px;text-shadow:0 2px 4px #001}.logo .value{font-size:15px;letter-spacing:.13em;margin-bottom:0}.time .value{font-size:clamp(22px,2.5vw,35px)}.location{text-align:left;align-items:flex-start}.location .value{font-size:clamp(24px,2.4vw,38px);letter-spacing:-.045em;margin:4px 0;line-height:1.05}.location .sub{letter-spacing:.08em;font-size:9px}.icon{font-size:24px;vertical-align:middle;margin-right:4px}.conditions .value{font-size:27px}.qualitybar{height:12px;border-radius:20px;margin:13px 0 9px;background:linear-gradient(90deg,#40d64b 0 35%,#ffe34a 35% 68%,#ff1749 68%);box-shadow:0 0 12px #fff2}.viewers .value{font-size:29px}.youtube{display:inline-grid;place-items:center;width:35px;height:24px;border-radius:7px;background:#ff173d;font-size:15px;margin-right:5px}
-
-@media(max-width:1000px){.grid{grid-template-columns:90px 150px minmax(210px,1.4fr) repeat(3,minmax(100px,1fr))}.cell{padding:15px 10px}.grid .cell:nth-child(7),.grid .cell:nth-child(8),.grid .cell:nth-child(9){border-top:1px solid #ffffff25}.grid .cell:nth-child(7){grid-column:4}.grid .cell:nth-child(8){grid-column:5}.grid .cell:nth-child(9){grid-column:6}.grid .cell:nth-child(10){grid-column:7;grid-row:2;border-top:1px solid #ffffff25}.grid .cell:nth-child(11){grid-column:1 / 4;grid-row:2;border-top:1px solid #ffffff25}}
-@media(max-width:650px){body{padding:0}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cell{border-right:1px solid #ffffff25;border-bottom:1px solid #ffffff25;padding:14px 8px}.logo{grid-column:1}.time{grid-column:2}.location{grid-column:1 / -1;grid-row:2;text-align:center;align-items:center}.grid .cell:nth-child(n+4){grid-column:auto;grid-row:auto}.grid .cell:nth-child(11){grid-column:1 / -1}.location .value{font-size:36px}.value{font-size:24px}.label{font-size:10px}.sub{font-size:10px}.logo-mark{width:48px;height:48px}.foot{font-size:10px}}
+:root{color-scheme:dark;--ink:#f5f8fa;--muted:#9eafbc;--line:rgba(222,237,247,.13);--accent:#ffb65c}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;background:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+.page{width:100%;margin:0;padding:0}
+.banner{width:100%;display:grid;grid-template-columns:82px 142px minmax(190px,1.7fr) repeat(4,minmax(84px,.72fr)) minmax(110px,.9fr) minmax(118px,1fr) minmax(90px,.72fr);align-items:stretch;overflow:hidden;background:linear-gradient(115deg,rgba(7,20,31,.97),rgba(9,31,43,.94) 55%,rgba(5,16,25,.98));border:1px solid rgba(203,225,239,.18);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.24);position:relative}
+.banner:before{content:"";height:2px;position:absolute;top:0;left:82px;right:0;background:linear-gradient(90deg,#56b5ff,#927cff,#f45b82,#ffb45e)}
+.cell{min-width:0;min-height:108px;padding:14px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-right:1px solid var(--line)}
+.cell:last-child{border-right:0}
+.label{font-size:9px;line-height:1.2;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:#aebdca;white-space:nowrap}
+.value{font-size:clamp(18px,1.65vw,27px);font-weight:680;line-height:1.05;letter-spacing:-.035em;margin:8px 0 5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sub{font-size:9px;line-height:1.25;font-weight:650;letter-spacing:.045em;color:#c0cdd6;white-space:nowrap}
+.brand{gap:7px}
+.logo{width:43px;height:43px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:linear-gradient(180deg,#f5a14a 0 35%,#147f9b 36% 66%,#0a2233 67%);font-size:23px}
+.brandname{font-size:10px;letter-spacing:.13em;font-weight:800;white-space:nowrap}
+.time .value{font-size:clamp(19px,1.7vw,27px);letter-spacing:-.025em}
+.location{align-items:flex-start;text-align:left;padding-left:18px}
+.location .value{font-size:clamp(24px,2.45vw,39px);font-weight:760;letter-spacing:-.055em;margin:6px 0 5px}
+.location .sub{font-size:8px;letter-spacing:.08em}
+.weathericon{font-size:22px;line-height:1.1;margin:7px 0 5px}
+.quality{padding-left:12px;padding-right:12px}
+.qualitybar{width:100%;height:7px;border-radius:20px;margin:12px 0 8px;background:linear-gradient(90deg,#3bd56c 0 34%,#f5d64b 34% 67%,#f54c65 67%);box-shadow:0 0 12px rgba(255,255,255,.07)}
+.youtube{display:inline-grid;place-items:center;width:25px;height:18px;border-radius:5px;background:#f04455;font-size:11px;margin-right:5px;vertical-align:2px}
+.status{position:absolute;left:-10000px}
+@media(max-width:1100px){.banner{grid-template-columns:70px 120px minmax(175px,1.5fr) repeat(4,minmax(75px,.7fr)) minmax(95px,.8fr) minmax(100px,.9fr) minmax(80px,.7fr)}.cell{padding:12px 7px;min-height:96px}.location{padding-left:12px}.location .value{font-size:clamp(21px,2.5vw,31px)}.sub{font-size:8px}.label{font-size:8px}}
+@media(max-width:760px){.banner{grid-template-columns:70px 1fr 1fr 1fr 1fr;border-radius:9px}.cell{min-height:82px;padding:10px 5px}.brand{grid-column:1;grid-row:1}.time{grid-column:2;grid-row:1}.location{grid-column:3 / 6;grid-row:1;align-items:flex-start}.location .value{font-size:clamp(23px,4vw,32px)}.cell:nth-child(4){grid-column:1;grid-row:2}.cell:nth-child(5){grid-column:2;grid-row:2}.cell:nth-child(6){grid-column:3;grid-row:2}.cell:nth-child(7){grid-column:4;grid-row:2}.cell:nth-child(8){grid-column:5;grid-row:2}.cell:nth-child(9){grid-column:1 / 3;grid-row:3}.cell:nth-child(10){grid-column:3 / 6;grid-row:3}.cell:nth-child(11){display:none}.banner:before{left:70px}}
+@media(max-width:480px){.banner{grid-template-columns:repeat(4,minmax(0,1fr))}.brand{grid-column:1;grid-row:1}.time{grid-column:2 / 5;grid-row:1}.location{grid-column:1 / 5;grid-row:2;align-items:center;text-align:center;border-top:1px solid var(--line)}.location .value{font-size:30px}.location .sub{font-size:8px}.cell:nth-child(4){grid-column:1;grid-row:3}.cell:nth-child(5){grid-column:2;grid-row:3}.cell:nth-child(6){grid-column:3;grid-row:3}.cell:nth-child(7){grid-column:4;grid-row:3}.cell:nth-child(8){grid-column:1 / 3;grid-row:4}.cell:nth-child(9){grid-column:3 / 5;grid-row:4}.cell:nth-child(10){grid-column:1 / 5;grid-row:5}.cell{min-height:76px}.value{font-size:20px}.label{font-size:8px}.sub{font-size:8px}.brandname{font-size:9px}.logo{width:37px;height:37px}.time .value{font-size:23px}}
 </style>
 </head>
-<body><main class="page">
-<section class="banner" aria-label="The Wedge surf cam information banner">
-<div class="grid">
-<div class="cell logo"><div class="logo-mark">🌊</div><div class="value">WEDGE CAM</div></div>
-<div class="cell time"><div class="label">Local time · Pacific</div><div class="value" id="clock">--:--:--</div><div class="sub" id="date">NEWPORT BEACH</div></div>
-<div class="cell location"><div class="label">Location</div><div class="value">THE WEDGE</div><div class="sub">NEWPORT BEACH, CALIFORNIA, USA</div></div>
-<div class="cell"><div class="label">Air temp</div><div class="value" id="temperature">Loading</div><div class="sub" id="temperatureC">LIVE WEATHER</div></div>
-<div class="cell"><div class="label">Buoy waves</div><div class="value" id="waveHeight"><span class="icon">🌊</span>Loading</div><div class="sub" id="wavePeriod">NOAA BUOY 46253</div></div>
-<div class="cell"><div class="label">Wind</div><div class="value" id="windSpeed">Loading</div><div class="sub" id="windDirection">LIVE WEATHER</div></div>
-<div class="cell"><div class="label">Tide</div><div class="value" id="tideHeight">Loading</div><div class="sub" id="tideTrend">NOAA PREDICTION</div></div>
-<div class="cell conditions"><div class="label">Conditions</div><div class="value" id="weatherIcon">🌤️</div><div class="sub" id="weatherDescription">LOADING WEATHER</div></div>
-<div class="cell"><div class="label">Surf quality</div><div class="qualitybar"></div><div class="sub">CHECK LIVE CAM</div></div>
-<div class="cell viewers"><div class="label">Viewers</div><div class="value"><span class="youtube">▶</span>—</div><div class="sub">COUNT NOT AVAILABLE</div></div>
-</div></section>
+<body>
+<main class="page">
+<section class="banner" aria-label="The Wedge live surf information banner">
+<div class="cell brand"><div class="logo" aria-hidden="true">🌊</div><div class="brandname">WEDGE CAM</div></div>
+<div class="cell time"><div class="label">Newport local time</div><div class="value" id="clock">--:--:--</div><div class="sub" id="date">CALIFORNIA</div></div>
+<div class="cell location"><div class="label">Newport Beach · California</div><div class="value">THE WEDGE</div><div class="sub">LIVE SURF CONDITIONS</div></div>
+<div class="cell"><div class="label">Air temp</div><div class="value" id="temperature">—</div><div class="sub" id="temperatureC">°C</div></div>
+<div class="cell"><div class="label">Buoy waves</div><div class="value" id="waveHeight">—</div><div class="sub" id="wavePeriod">NOAA BUOY</div></div>
+<div class="cell"><div class="label">Wind</div><div class="value" id="windSpeed">—</div><div class="sub" id="windDirection">LIVE WEATHER</div></div>
+<div class="cell"><div class="label">Tide</div><div class="value" id="tideHeight">—</div><div class="sub" id="tideTrend">NOAA PREDICTION</div></div>
+<div class="cell"><div class="label">Conditions</div><div class="weathericon" id="weatherIcon">◌</div><div class="sub" id="weatherDescription">LOADING</div></div>
+<div class="cell quality"><div class="label">Surf quality</div><div class="qualitybar"></div><div class="sub">CHECK LIVE CAM</div></div>
+<div class="cell"><div class="label">Live viewers</div><div class="value">—</div><div class="sub">NOT AVAILABLE</div></div>
+<div class="status" id="dataStatus" aria-live="polite">Loading live feeds</div>
+</section>
 </main>
 <script>
 const $=id=>document.getElementById(id);
-const timeOptions={timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false};
-const dateOptions={timeZone:'America/Los_Angeles',weekday:'short',month:'short',day:'2-digit',year:'numeric'};
-function updateClock(){const now=new Date();$('clock').textContent=new Intl.DateTimeFormat('en-US',timeOptions).format(now);$('date').textContent=new Intl.DateTimeFormat('en-US',dateOptions).format(now).toUpperCase();}
+const fmt=(v,d=0)=>Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
+function updateClock(){const now=new Date();$('clock').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);$('date').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',month:'short',day:'2-digit',year:'numeric'}).format(now).toUpperCase();}
 updateClock();setInterval(updateClock,1000);
-const num=(v,d=0)=>Number.isFinite(Number(v))?Number(v).toFixed(d):null;
 const compass=d=>{if(!Number.isFinite(Number(d)))return 'DIRECTION N/A';const dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];return dirs[Math.round(Number(d)/22.5)%16]+' · '+Math.round(Number(d))+'°';};
-function set(id,value){$(id).textContent=value;}
 async function loadWeather(){
- const url='https://api.open-meteo.com/v1/forecast?latitude=33.5935&longitude=-117.8817&current=temperature_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,wind_speed_10m,wind_direction_10m&temperature_unit=fahrenheit&wind_speed_unit=kn&timezone=America%2FLos_Angeles';
- const r=await fetch(url);if(!r.ok)throw Error('Weather feed unavailable');const j=await r.json(),v=j.current;
- set('temperature',num(v.temperature_2m)+'°F');set('temperatureC',num((v.temperature_2m-32)*5/9,1)+'°C · LIVE');
- set('windSpeed','↗ '+num(v.wind_speed_10m)+' kt');set('windDirection',compass(v.wind_direction_10m));
- const codes={0:['☀️','CLEAR'],1:['🌤️','MOSTLY CLEAR'],2:['🌤️','PARTLY CLOUDY'],3:['☁️','OVERCAST'],45:['🌫️','FOG'],48:['🌫️','RIME FOG'],51:['🌦️','LIGHT DRIZZLE'],53:['🌦️','DRIZZLE'],55:['🌧️','HEAVY DRIZZLE'],61:['🌧️','LIGHT RAIN'],63:['🌧️','RAIN'],65:['🌧️','HEAVY RAIN'],71:['🌨️','LIGHT SNOW'],73:['🌨️','SNOW'],75:['❄️','HEAVY SNOW'],80:['🌦️','SHOWERS'],81:['🌧️','SHOWERS'],82:['⛈️','HEAVY SHOWERS'],95:['⛈️','THUNDERSTORM'],96:['⛈️','THUNDERSTORM'],99:['⛈️','SEVERE THUNDERSTORM']};
- const w=codes[v.weather_code]||['🌤️','CURRENT CONDITIONS'];set('weatherIcon',w[0]);set('weatherDescription',w[1]);
+ const url='https://api.open-meteo.com/v1/forecast?latitude=33.5935&longitude=-117.8817&current=temperature_2m,weather_code,wind_speed_10m,wind_direction_10m&temperature_unit=fahrenheit&wind_speed_unit=kn&timezone=America%2FLos_Angeles';
+ const r=await fetch(url);if(!r.ok)throw Error('Weather unavailable');const j=await r.json(),v=j.current;
+ $('temperature').textContent=fmt(v.temperature_2m)+'°F';$('temperatureC').textContent=fmt((v.temperature_2m-32)*5/9,1)+'°C · LIVE';
+ $('windSpeed').textContent='↖ '+fmt(v.wind_speed_10m)+' kt';$('windDirection').textContent=compass(v.wind_direction_10m);
+ const codes={0:['☀️','CLEAR'],1:['🌤️','MOSTLY CLEAR'],2:['🌤️','PARTLY CLOUDY'],3:['☁️','OVERCAST'],45:['🌫️','FOG'],48:['🌫️','FOG'],51:['🌦️','DRIZZLE'],53:['🌦️','DRIZZLE'],55:['🌧️','HEAVY DRIZZLE'],61:['🌧️','LIGHT RAIN'],63:['🌧️','RAIN'],65:['🌧️','HEAVY RAIN'],80:['🌦️','SHOWERS'],81:['🌧️','SHOWERS'],82:['⛈️','HEAVY SHOWERS'],95:['⛈️','THUNDERSTORM'],96:['⛈️','THUNDERSTORM'],99:['⛈️','THUNDERSTORM']};
+ const w=codes[v.weather_code]||['🌤️','CURRENT CONDITIONS'];$('weatherIcon').textContent=w[0];$('weatherDescription').textContent=w[1];
 }
 async function loadBuoy(){
- const r=await fetch('https://www.ndbc.noaa.gov/data/realtime2/46253.txt');if(!r.ok)throw Error('NOAA buoy feed unavailable');
- const txt=await r.text(),lines=txt.trim().split(/\r?\n/),header=lines.find(x=>x.startsWith('#YY'));
- if(!header)throw Error('Buoy data format unavailable');
- const cols=header.replace(/^#\s*/,'').trim().split(/\s+/),row=lines.slice(lines.indexOf(header)+1).find(x=>x.trim()&&!x.startsWith('#'));
- if(!row)throw Error('No recent buoy observation');const vals=row.trim().split(/\s+/),v={};cols.forEach((k,i)=>v[k]=vals[i]);
- const wave=Number(v.WVHT),period=Number(v.DPD);
- if(Number.isFinite(wave)&&wave>=0)set('waveHeight','🌊 '+num(wave*3.28084,1)+' ft');else set('waveHeight','N/A');
- if(Number.isFinite(period)&&period>0)set('wavePeriod',num(period,0)+' s dominant period · NOAA 46253');else set('wavePeriod','PERIOD NOT REPORTED · NOAA 46253');
+ const r=await fetch('https://www.ndbc.noaa.gov/data/realtime2/46253.txt');if(!r.ok)throw Error('Buoy unavailable');const lines=(await r.text()).trim().split(/\r?\n/),header=lines.find(x=>x.startsWith('#YY'));if(!header)throw Error('Buoy data unavailable');
+ const cols=header.replace(/^#\s*/,'').trim().split(/\s+/),row=lines.slice(lines.indexOf(header)+1).find(x=>x.trim()&&!x.startsWith('#'));if(!row)throw Error('No buoy reading');
+ const vals=row.trim().split(/\s+/),v={};cols.forEach((k,i)=>v[k]=vals[i]);const wave=Number(v.WVHT),period=Number(v.DPD);
+ $('waveHeight').textContent=Number.isFinite(wave)&&wave>=0?fmt(wave*3.28084,1)+' ft':'N/A';
+ $('wavePeriod').textContent=Number.isFinite(period)&&period>0?fmt(period)+' s period · NOAA':'PERIOD UNAVAILABLE';
 }
 async function loadTide(){
- const now=new Date();
- const localDate=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).format(now).replace(/-/g,'');
- const offsetPart=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',timeZoneName:'shortOffset'}).formatToParts(now).find(p=>p.type==='timeZoneName')?.value||'GMT-7';
- const offset=offsetPart==='GMT-8'?'-08:00':offsetPart==='GMT-7'?'-07:00':offsetPart.replace('GMT','')+':00';
- const url='https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=9410580&product=predictions&date='+localDate+'&datum=MLLW&time_zone=lst_ldt&units=english&format=json&interval=60';
- const r=await fetch(url);if(!r.ok)throw Error('NOAA tide feed unavailable');const j=await r.json();
- if(!j.predictions||!j.predictions.length)throw Error(j.error||'Tide predictions unavailable');
- const items=j.predictions.map(p=>({...p,t:new Date(p.t.replace(' ','T')+offset)})).filter(p=>!isNaN(p.t));
- let i=items.findIndex(p=>p.t>=now);if(i<0)i=items.length-1;const p=items[i],prev=items[Math.max(0,i-1)];
- set('tideHeight',(Number(p.v)>=0?'↑ ':'↓ ')+num(p.v,1)+' ft');set('tideTrend',(Number(p.v)>=Number(prev.v)?'RISING':'FALLING')+' · PREDICTED');
+ const now=new Date(),parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',timeZoneName:'shortOffset'}).formatToParts(now),get=t=>parts.find(p=>p.type===t)?.value;
+ const date=get('year')+get('month')+get('day'),offset=get('timeZoneName')==='GMT-8'?'-08:00':'-07:00';
+ const url='https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=9410580&product=predictions&date='+date+'&datum=MLLW&time_zone=lst_ldt&units=english&format=json&interval=60';
+ const r=await fetch(url);if(!r.ok)throw Error('Tide unavailable');const j=await r.json();if(!j.predictions?.length)throw Error('Tide predictions unavailable');
+ const a=j.predictions.map(p=>({...p,t:new Date(p.t.replace(' ','T')+offset)})),i=Math.max(0,a.findIndex(p=>p.t>=now)),p=a[i<0?a.length-1:i],prev=a[Math.max(0,(i<0?a.length-1:i)-1)];
+ $('tideHeight').textContent=fmt(p.v,1)+' ft';$('tideTrend').textContent=(Number(p.v)>=Number(prev.v)?'RISING':'FALLING')+' · PREDICTED';
 }
-async function refreshAll(){
- const results=await Promise.allSettled([loadWeather(),loadBuoy(),loadTide()]);
- const failed=results.filter(r=>r.status==='rejected').length;
- document.title=(failed===0?'Live':'Partial')+' · The Wedge Cam';
- results.forEach((r,i)=>{if(r.status==='rejected')console.warn(['Weather','Buoy','Tide'][i]+' feed:',r.reason);});
-}
-refreshAll();setInterval(refreshAll,5*60*1000);
+async function refresh(){const res=await Promise.allSettled([loadWeather(),loadBuoy(),loadTide()]);$('dataStatus').textContent=res.every(x=>x.status==='fulfilled')?'Live feeds updated':'One or more live feeds unavailable';}
+refresh();setInterval(refresh,300000);
 </script>
-</body></html>
+</body>
+</html>
