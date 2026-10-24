@@ -34,6 +34,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:va
 @media(max-width:1100px){.banner{grid-template-columns:70px 120px minmax(175px,1.5fr) repeat(4,minmax(75px,.7fr)) minmax(95px,.8fr) minmax(100px,.9fr)}.cell{padding:12px 7px;min-height:96px}.location{padding-left:12px}.location .value{font-size:clamp(21px,2.5vw,31px)}.sub{font-size:8px}.label{font-size:8px}}
 @media(max-width:760px){.banner{grid-template-columns:70px 1fr 1fr 1fr 1fr;border-radius:9px}.cell{min-height:82px;padding:10px 5px}.brand{grid-column:1;grid-row:1}.time{grid-column:2;grid-row:1}.location{grid-column:3 / 6;grid-row:1;align-items:flex-start}.location .value{font-size:clamp(23px,4vw,32px)}.cell:nth-child(4){grid-column:1;grid-row:2}.cell:nth-child(5){grid-column:2;grid-row:2}.cell:nth-child(6){grid-column:3;grid-row:2}.cell:nth-child(7){grid-column:4;grid-row:2}.cell:nth-child(8){grid-column:5;grid-row:2}.cell:nth-child(9){grid-column:1 / 3;grid-row:3}.cell:nth-child(10){grid-column:3 / 6;grid-row:3}.cell:nth-child(11){display:none}.banner:before{left:70px}}
 @media(max-width:480px){.banner{grid-template-columns:repeat(4,minmax(0,1fr))}.brand{grid-column:1;grid-row:1}.time{grid-column:2 / 5;grid-row:1}.location{grid-column:1 / 5;grid-row:2;align-items:center;text-align:center;border-top:1px solid var(--line)}.location .value{font-size:30px}.location .sub{font-size:8px}.cell:nth-child(4){grid-column:1;grid-row:3}.cell:nth-child(5){grid-column:2;grid-row:3}.cell:nth-child(6){grid-column:3;grid-row:3}.cell:nth-child(7){grid-column:4;grid-row:3}.cell:nth-child(8){grid-column:1 / 3;grid-row:4}.cell:nth-child(9){grid-column:3 / 5;grid-row:4}.cell:nth-child(10){grid-column:1 / 5;grid-row:5}.cell{min-height:76px}.value{font-size:20px}.label{font-size:8px}.sub{font-size:8px}.brandname{font-size:9px}.logo{width:37px;height:37px}.time .value{font-size:23px}}
+
+.newsbar{margin-top:6px;display:grid;grid-template-columns:190px minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:0;overflow:hidden;border:1px solid rgba(203,225,239,.18);border-radius:10px;background:linear-gradient(110deg,rgba(7,20,31,.98),rgba(9,31,43,.96));box-shadow:0 6px 20px rgba(0,0,0,.16)}
+.news-heading{padding:12px 15px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line)}
+.news-kicker{font-size:9px;font-weight:800;letter-spacing:.16em;color:#ffbd67;text-transform:uppercase}
+.news-title{font-size:13px;font-weight:750;letter-spacing:.04em;margin-top:5px}
+.news-item{min-width:0;padding:11px 15px;display:flex;flex-direction:column;justify-content:center;gap:5px;border-right:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.news-item:last-child{border-right:0}
+.news-item:hover{background:rgba(255,255,255,.045)}
+.news-category{font-size:8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#9eafbc}
+.news-headline{font-size:12px;line-height:1.35;font-weight:650}
+.news-source{font-size:9px;color:#9eafbc}
+@media(max-width:760px){.newsbar{grid-template-columns:1fr}.news-heading{border-right:0;border-bottom:1px solid var(--line);padding:10px 12px}.news-item{padding:10px 12px;border-right:0;border-bottom:1px solid var(--line)}.news-item:last-child{border-bottom:0}.news-title{font-size:12px}}
 </style>
 </head>
 <body>
@@ -49,6 +61,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:va
 <div class="cell"><div class="label">Conditions</div><div class="weathericon" id="weatherIcon">◌</div><div class="sub" id="weatherDescription">LOADING</div></div>
 <div class="cell quality"><div class="label">Surf quality</div><div class="qualitybar"></div><div class="sub">CHECK LIVE CAM</div></div>
 <div class="status" id="dataStatus" aria-live="polite">Loading live feeds</div>
+</section>
+<section class="newsbar" aria-label="El Niño and Newport Beach headlines">
+  <div class="news-heading"><div class="news-kicker">Coastal News</div><div class="news-title">EL NIÑO WATCH</div></div>
+  <a class="news-item" id="elninoNews" href="https://www.surfer.com/news/king-tides-california-super-el-nino-video" target="_blank" rel="noopener noreferrer"><span class="news-category">EL NIÑO · CALIFORNIA</span><span class="news-headline">King tides and coastal erosion put California beaches on alert</span><span class="news-source">SURFER · OPEN STORY ↗</span></a>
+  <a class="news-item" id="newportNews" href="https://www.newportbeachca.gov/trending/community-issues/el-ni-o/-fsiteid-1" target="_blank" rel="noopener noreferrer"><span class="news-category">NEWPORT BEACH</span><span class="news-headline">City updates coastal flood and high-tide preparedness</span><span class="news-source">CITY OF NEWPORT BEACH · OFFICIAL ↗</span></a>
 </section>
 </main>
 <script>
@@ -80,6 +97,21 @@ async function loadTide(){
  const a=j.predictions.map(p=>({...p,t:new Date(p.t.replace(' ','T')+offset)})),i=Math.max(0,a.findIndex(p=>p.t>=now)),p=a[i<0?a.length-1:i],prev=a[Math.max(0,(i<0?a.length-1:i)-1)];
  $('tideHeight').textContent=fmt(p.v,1)+' ft';$('tideTrend').textContent=(Number(p.v)>=Number(prev.v)?'RISING':'FALLING')+' · PREDICTED';
 }
+
+const newsFeeds=[
+ {id:'elninoNews',query:'El Nino California coast'},
+ {id:'newportNews',query:'Newport Beach El Nino coastal flooding'}
+];
+async function loadHeadlines(){
+ await Promise.allSettled(newsFeeds.map(async feed=>{
+  const rss='https://news.google.com/rss/search?q='+encodeURIComponent(feed.query)+'&hl=en-US&gl=US&ceid=US:en';
+  const url='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(rss);
+  const r=await fetch(url);if(!r.ok)throw Error('News feed unavailable');const j=await r.json();const item=(j.items||[]).find(x=>x.title&&x.link);if(!item)throw Error('No headlines');
+  const a=$(feed.id);a.href=item.link;a.querySelector('.news-headline').textContent=item.title;a.querySelector('.news-source').textContent=(item.author||'LATEST NEWS')+' · OPEN STORY ↗';
+ }));
+}
+loadHeadlines();setInterval(loadHeadlines,900000);
+
 async function refresh(){const res=await Promise.allSettled([loadWeather(),loadBuoy(),loadTide()]);$('dataStatus').textContent=res.every(x=>x.status==='fulfilled')?'Live feeds updated':'One or more live feeds unavailable';}
 refresh();setInterval(refresh,300000);
 </script>
