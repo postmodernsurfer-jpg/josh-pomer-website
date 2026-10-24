@@ -55,7 +55,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:va
 <script>
 const $=id=>document.getElementById(id);
 const fmt=(v,d=0)=>Number.isFinite(Number(v))?Number(v).toFixed(d):'—';
-function updateClock(){const now=new Date();$('clock').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);$('date').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',month:'short',day:'2-digit',year:'numeric'}).format(now).toUpperCase();}
+function updateClock(){const now=new Date();$('clock').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true}).format(now);$('date').textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',month:'short',day:'2-digit',year:'numeric'}).format(now).toUpperCase();}
 updateClock();setInterval(updateClock,1000);
 const compass=d=>{if(!Number.isFinite(Number(d)))return 'DIRECTION N/A';const dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];return dirs[Math.round(Number(d)/22.5)%16]+' · '+Math.round(Number(d))+'°';};
 async function loadWeather(){
