@@ -7,21 +7,19 @@
 <meta name="description" content="The Wedge, Newport Beach surf cam style dashboard with local time and surf conditions.">
 <title>The Wedge Cam | Newport Beach</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#07121c;color:#fff;font-family:Arial,Helvetica,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px}
-.page{width:100%;max-width:1600px}.eyebrow{text-transform:uppercase;letter-spacing:.2em;color:#f8b25a;font-size:11px;font-weight:bold;margin:0 0 12px}.intro{margin:0 0 18px;color:#b8c8d2;font-size:14px}.banner{position:relative;isolation:isolate;overflow:hidden;border:1px solid #324657;border-radius:4px;background:linear-gradient(90deg,rgba(3,15,26,.97),rgba(3,20,32,.78) 45%,rgba(3,14,23,.91)),radial-gradient(ellipse at 70% 0%,#ff9b4c 0%,#813d43 22%,transparent 50%),linear-gradient(165deg,#0a5268,#05111e 65%);box-shadow:0 18px 60px #0008}
+*{box-sizing:border-box}body{margin:0;background:transparent;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:0;padding:0}
+.page{width:100%;max-width:none}.banner{position:relative;isolation:isolate;overflow:hidden;border:1px solid #324657;border-radius:14px;background:linear-gradient(90deg,rgba(3,15,26,.97),rgba(3,20,32,.78) 45%,rgba(3,14,23,.91)),radial-gradient(ellipse at 70% 0%,#ff9b4c 0%,#813d43 22%,transparent 50%),linear-gradient(165deg,#0a5268,#05111e 65%);box-shadow:0 18px 60px #0008}
 .banner:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 38% 100%,#087b9c88,transparent 45%),linear-gradient(0deg,#020810aa,transparent 70%)}
 .banner:after{content:"";position:absolute;z-index:-1;left:28%;right:0;top:0;height:5px;background:linear-gradient(90deg,#52a9ff,#f34362,#ffb52e)}
 .grid{display:grid;grid-template-columns:110px 180px minmax(230px,1.8fr) repeat(6,minmax(100px,.8fr)) minmax(105px,.8fr);align-items:stretch}
 .cell{padding:19px 14px;min-width:0;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #ffffff30;text-align:center}
-.cell:last-child{border-right:0}.label{font-size:11px;font-weight:700;letter-spacing:.12em;color:#c4d0d9;text-transform:uppercase;white-space:nowrap}.value{font-size:clamp(19px,2vw,30px);font-weight:800;line-height:1.12;margin:8px 0 5px;white-space:nowrap}.sub{font-size:11px;font-weight:700;letter-spacing:.04em;color:#d1dbe2;white-space:nowrap}.logo{align-items:center}.logo-mark{width:58px;height:58px;border:2px solid #f9f6ee;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ff8b38 0 35%,#087fa7 36% 65%,#071a2b 66%);font-size:29px;text-shadow:0 2px 4px #001}.logo .value{font-size:15px;letter-spacing:.13em;margin-bottom:0}.time .value{font-size:clamp(22px,2.5vw,35px)}.location{text-align:left;align-items:flex-start}.location .value{font-size:clamp(28px,3vw,46px);letter-spacing:-.045em;margin:4px 0}.location .sub{letter-spacing:.17em}.icon{font-size:24px;vertical-align:middle;margin-right:4px}.conditions .value{font-size:27px}.qualitybar{height:12px;border-radius:20px;margin:13px 0 9px;background:linear-gradient(90deg,#40d64b 0 35%,#ffe34a 35% 68%,#ff1749 68%);box-shadow:0 0 12px #fff2}.viewers .value{font-size:29px}.youtube{display:inline-grid;place-items:center;width:35px;height:24px;border-radius:7px;background:#ff173d;font-size:15px;margin-right:5px}
-.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px;color:#91a5b5;font-size:11px}.foot strong{color:#d9e5eb}
+.cell:last-child{border-right:0}.label{font-size:11px;font-weight:700;letter-spacing:.12em;color:#c4d0d9;text-transform:uppercase;white-space:nowrap}.value{font-size:clamp(19px,2vw,30px);font-weight:800;line-height:1.12;margin:8px 0 5px;white-space:nowrap}.sub{font-size:11px;font-weight:700;letter-spacing:.04em;color:#d1dbe2;white-space:nowrap}.logo{align-items:center}.logo-mark{width:58px;height:58px;border:2px solid #f9f6ee;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ff8b38 0 35%,#087fa7 36% 65%,#071a2b 66%);font-size:29px;text-shadow:0 2px 4px #001}.logo .value{font-size:15px;letter-spacing:.13em;margin-bottom:0}.time .value{font-size:clamp(22px,2.5vw,35px)}.location{text-align:left;align-items:flex-start}.location .value{font-size:clamp(24px,2.4vw,38px);letter-spacing:-.045em;margin:4px 0;line-height:1.05}.location .sub{letter-spacing:.08em;font-size:9px}.icon{font-size:24px;vertical-align:middle;margin-right:4px}.conditions .value{font-size:27px}.qualitybar{height:12px;border-radius:20px;margin:13px 0 9px;background:linear-gradient(90deg,#40d64b 0 35%,#ffe34a 35% 68%,#ff1749 68%);box-shadow:0 0 12px #fff2}.viewers .value{font-size:29px}.youtube{display:inline-grid;place-items:center;width:35px;height:24px;border-radius:7px;background:#ff173d;font-size:15px;margin-right:5px}
+
 @media(max-width:1000px){.grid{grid-template-columns:90px 150px minmax(210px,1.4fr) repeat(3,minmax(100px,1fr))}.cell{padding:15px 10px}.grid .cell:nth-child(7),.grid .cell:nth-child(8),.grid .cell:nth-child(9){border-top:1px solid #ffffff25}.grid .cell:nth-child(7){grid-column:4}.grid .cell:nth-child(8){grid-column:5}.grid .cell:nth-child(9){grid-column:6}.grid .cell:nth-child(10){grid-column:7;grid-row:2;border-top:1px solid #ffffff25}.grid .cell:nth-child(11){grid-column:1 / 4;grid-row:2;border-top:1px solid #ffffff25}}
-@media(max-width:650px){body{padding:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cell{border-right:1px solid #ffffff25;border-bottom:1px solid #ffffff25;padding:14px 8px}.logo{grid-column:1}.time{grid-column:2}.location{grid-column:1 / -1;grid-row:2;text-align:center;align-items:center}.grid .cell:nth-child(n+4){grid-column:auto;grid-row:auto}.grid .cell:nth-child(11){grid-column:1 / -1}.location .value{font-size:36px}.value{font-size:24px}.label{font-size:10px}.sub{font-size:10px}.logo-mark{width:48px;height:48px}.foot{font-size:10px}}
+@media(max-width:650px){body{padding:0}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cell{border-right:1px solid #ffffff25;border-bottom:1px solid #ffffff25;padding:14px 8px}.logo{grid-column:1}.time{grid-column:2}.location{grid-column:1 / -1;grid-row:2;text-align:center;align-items:center}.grid .cell:nth-child(n+4){grid-column:auto;grid-row:auto}.grid .cell:nth-child(11){grid-column:1 / -1}.location .value{font-size:36px}.value{font-size:24px}.label{font-size:10px}.sub{font-size:10px}.logo-mark{width:48px;height:48px}.foot{font-size:10px}}
 </style>
 </head>
 <body><main class="page">
-<p class="eyebrow">Live surf conditions · Orange County, California</p>
-<p class="intro">A broadcast-style information banner for The Wedge, Newport Beach.</p>
 <section class="banner" aria-label="The Wedge surf cam information banner">
 <div class="grid">
 <div class="cell logo"><div class="logo-mark">🌊</div><div class="value">WEDGE CAM</div></div>
@@ -35,7 +33,6 @@
 <div class="cell"><div class="label">Surf quality</div><div class="qualitybar"></div><div class="sub">CHECK LIVE CAM</div></div>
 <div class="cell viewers"><div class="label">Viewers</div><div class="value"><span class="youtube">▶</span>—</div><div class="sub">COUNT NOT AVAILABLE</div></div>
 </div></section>
-<div class="foot"><span><strong>THE WEDGE CAM</strong> · Newport Beach, CA</span><span id="dataStatus">Connecting to live public data…</span></div>
 </main>
 <script>
 const $=id=>document.getElementById(id);
@@ -79,7 +76,7 @@ async function loadTide(){
 async function refreshAll(){
  const results=await Promise.allSettled([loadWeather(),loadBuoy(),loadTide()]);
  const failed=results.filter(r=>r.status==='rejected').length;
- set('dataStatus',(failed===0?'LIVE DATA UPDATED':'Some feeds unavailable')+' · Updated '+new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit'}).format(new Date())+' PT');
+ document.title=(failed===0?'Live':'Partial')+' · The Wedge Cam';
  results.forEach((r,i)=>{if(r.status==='rejected')console.warn(['Weather','Buoy','Tide'][i]+' feed:',r.reason);});
 }
 refreshAll();setInterval(refreshAll,5*60*1000);
