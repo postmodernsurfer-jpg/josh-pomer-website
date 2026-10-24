@@ -1,77 +1,21 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#08131d">
-<meta name="description" content="Scrolling news ticker for El Niño, California coastal impacts, and Newport Beach.">
-<title>El Niño & Newport Beach News Ticker</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Coastal Chat Headlines</title>
 <style>
-:root{color-scheme:dark;--ink:#f5f8fa;--muted:#9eafbc;--line:rgba(203,225,239,.18);--gold:#ffbd67}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;width:100%;background:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
-.newsbar{width:100%;height:58px;display:flex;align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:linear-gradient(110deg,rgba(7,20,31,.98),rgba(9,31,43,.96));box-shadow:0 6px 20px rgba(0,0,0,.16)}
-.heading{flex:0 0 176px;padding:9px 14px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line);z-index:2;background:#081722}
-.kicker{font-size:9px;font-weight:800;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
-.title{font-size:13px;font-weight:800;letter-spacing:.035em;margin-top:4px;white-space:nowrap}
-.ticker{position:relative;min-width:0;flex:1;display:flex;align-items:center;overflow:hidden}
-.track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scroll 70s linear infinite}
-.ticker:hover .track{animation-play-state:paused}
-.item{display:inline-flex;align-items:center;gap:10px;padding:0 24px;font-size:12px;font-weight:600;color:var(--ink)}
-.dot{color:var(--gold);font-size:14px}
-.tag{font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--gold)}
-.status{flex:0 0 auto;display:flex;align-items:center;padding:0 12px;border-left:1px solid var(--line);font-size:9px;font-weight:800;letter-spacing:.1em;color:#9eafbc;background:#081722}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:600px){.newsbar{height:54px}.heading{flex-basis:130px;padding:8px 10px}.title{font-size:11px}.status{display:none}.item{font-size:11px;padding:0 16px}}
-@media(prefers-reduced-motion:reduce){.track{animation-duration:180s}}
-</style>
-</head>
-<body>
-<section class="newsbar" aria-label="Continuously scrolling El Niño and Newport Beach news headlines">
-<div class="heading"><div class="kicker">Coastal News</div><div class="title">EL NIÑO WATCH</div></div>
-<div class="ticker" aria-live="polite"><div class="track" id="track"><span class="item"><span class="tag">EL NIÑO · CALIFORNIA</span> Loading latest coastal news…</span></div></div>
-<div class="status" id="status">LIVE NEWS</div>
-</section>
-<script>
-const queries=[
- {tag:'EL NIÑO · CALIFORNIA',q:'El Nino California coast'},
- {tag:'NEWPORT BEACH',q:'Newport Beach coastal flooding high tides weather'},
- {tag:'CALIFORNIA COAST',q:'California coastal erosion storm surf conditions'},
- {tag:'PACIFIC WEATHER',q:'NOAA ENSO El Nino forecast Pacific'}
-];
-const fallback=[
- 'Following El Niño forecasts and California coastal impacts',
- 'Tracking Newport Beach high tides, coastal flooding and local weather',
- 'California coastal erosion, storm conditions and shoreline updates',
- 'Pacific Ocean and NOAA climate outlook updates'
-];
-async function getHeadlines(){
- const found=[];
- for(const f of queries){
-  try{
-   const rss='https://news.google.com/rss/search?q='+encodeURIComponent(f.q)+'&hl=en-US&gl=US&ceid=US:en';
-   const url='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(rss);
-   const res=await fetch(url);
-   if(!res.ok)continue;
-   const data=await res.json();
-   const item=(data.items||[]).find(x=>x.title);
-   if(item)found.push({tag:f.tag,text:item.title});
-  }catch(e){}
- }
- return found;
-}
-function render(items){
- const list=items.length?items:fallback.map((text,i)=>({tag:queries[i].tag,text}));
- const html=list.map(x=>'<span class="item"><span class="tag">'+escapeHtml(x.tag)+'</span><span class="dot">•</span><span>'+escapeHtml(x.text)+'</span></span>').join('');
- document.getElementById('track').innerHTML=html+html;
- document.getElementById('status').textContent=items.length?'LIVE NEWS':'COASTAL NEWS';
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-async function update(){const items=await getHeadlines();render(items);}
-render([]);
-update();
-setInterval(update,900000);
-</script>
-</body>
-</html>
+:root{color-scheme:dark;--ink:#f5f8fa;--line:rgba(203,225,239,.18);--gold:#ffbd67}*{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;background:transparent}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+.bar{height:56px;width:100%;display:flex;align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:9px;background:linear-gradient(110deg,rgba(7,20,31,.98),rgba(9,31,43,.96))}
+.label{flex:0 0 158px;display:flex;flex-direction:column;justify-content:center;padding:0 14px;background:#081722;border-right:1px solid var(--line)}.kicker{font-size:9px;font-weight:800;letter-spacing:.15em;color:var(--gold);text-transform:uppercase}.title{font-size:13px;font-weight:800;margin-top:4px;white-space:nowrap}
+.window{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}.track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scroll 52s linear infinite}.window:hover .track{animation-play-state:paused}.topic{display:inline-flex;align-items:center;gap:9px;padding:0 23px;font-size:12px;font-weight:650}.dot{color:var(--gold);font-size:16px}.prompt{font-size:9px;color:var(--gold);font-weight:800;letter-spacing:.1em}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}@media(max-width:550px){.bar{height:52px}.label{flex-basis:118px;padding:0 9px}.title{font-size:11px}.topic{font-size:11px;padding:0 14px}}@media(prefers-reduced-motion:reduce){.track{animation-duration:120s}}
+</style></head><body>
+<section class="bar" aria-label="Scrolling conversation headlines for live chat"><div class="label"><div class="kicker">Join the chat</div><div class="title">COASTAL TALK</div></div><div class="window"><div class="track">
+<span class="topic"><span class="prompt">EL NIÑO</span> Will this winter bring bigger California surf? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">NEWPORT BEACH</span> What are your favorite days at The Wedge? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">COAST WATCH</span> Are coastal storms changing our beaches? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">SURF CHAT</span> Best swell direction for a classic Wedge day? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">YOUR TAKE</span> Share your local surf report in live chat! <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">EL NIÑO</span> Will this winter bring bigger California surf? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">NEWPORT BEACH</span> What are your favorite days at The Wedge? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">COAST WATCH</span> Are coastal storms changing our beaches? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">SURF CHAT</span> Best swell direction for a classic Wedge day? <span class="dot">•</span></span>
+<span class="topic"><span class="prompt">YOUR TAKE</span> Share your local surf report in live chat! <span class="dot">•</span></span>
+</div></div></section></body></html>
