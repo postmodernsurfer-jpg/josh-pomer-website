@@ -65,10 +65,14 @@ async function loadBuoy(){
  if(Number.isFinite(period)&&period>0)set('wavePeriod',num(period,0)+' s dominant period · NOAA 46253');else set('wavePeriod','PERIOD NOT REPORTED · NOAA 46253');
 }
 async function loadTide(){
- const url='https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=9410580&product=predictions&date=today&datum=MLLW&time_zone=lst_ldt&units=english&format=json&interval=60';
+ const now=new Date();
+ const localDate=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).format(now).replace(/-/g,'');
+ const offsetPart=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',timeZoneName:'shortOffset'}).formatToParts(now).find(p=>p.type==='timeZoneName')?.value||'GMT-7';
+ const offset=offsetPart==='GMT-8'?'-08:00':offsetPart==='GMT-7'?'-07:00':offsetPart.replace('GMT','')+':00';
+ const url='https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=9410580&product=predictions&date='+localDate+'&datum=MLLW&time_zone=lst_ldt&units=english&format=json&interval=60';
  const r=await fetch(url);if(!r.ok)throw Error('NOAA tide feed unavailable');const j=await r.json();
  if(!j.predictions||!j.predictions.length)throw Error(j.error||'Tide predictions unavailable');
- const now=new Date(),items=j.predictions.map(p=>({...p,t:new Date(p.t)})).filter(p=>!isNaN(p.t));
+ const items=j.predictions.map(p=>({...p,t:new Date(p.t.replace(' ','T')+offset)})).filter(p=>!isNaN(p.t));
  let i=items.findIndex(p=>p.t>=now);if(i<0)i=items.length-1;const p=items[i],prev=items[Math.max(0,i-1)];
  set('tideHeight',(Number(p.v)>=0?'↑ ':'↓ ')+num(p.v,1)+' ft');set('tideTrend',(Number(p.v)>=Number(prev.v)?'RISING':'FALLING')+' · PREDICTED');
 }
